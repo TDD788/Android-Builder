@@ -19,11 +19,11 @@ OUTPUTS=$ROOT/builds
 
 # 初始化仓库
 initRepos() {
-    if [ ! -d $ROOT/LineageOS ]; then
-        mkdir -p $ROOT/LineageOS
-        cd $ROOT/LineageOS
-        echo "--> Initializing LineageOS Repo"
-        repo init -u https://github.com/LineageOS/android -b lineage-20.0 --git-lfs
+    if [ ! -d $ROOT/RisingOS ]; then
+        mkdir -p $ROOT/RisingOS
+        cd $ROOT/RisingOS
+        echo "--> Initializing RisingOS Repo"
+        repo init -u https://github.com/RisingTechOSS/android -b fourteen --git-lfs
         echo
     fi
 }
@@ -45,10 +45,10 @@ applyManifestsPatches() {
 
 # 同步仓库内容
 syncRepos() {
-    if [ -d $ROOT/LineageOS ]; then
-        cd $ROOT/LineageOS
+    if [ -d $ROOT/RisingOS ]; then
+        cd $ROOT/RisingOS
         echo "--> Syncing repos"
-        repo sync -c --force-sync --no-clone-bundle --no-tags -j16
+        repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
         echo
     fi
 }
@@ -89,7 +89,7 @@ applyPatches() {
 # 设置环境
 setupEnv() {
     echo "--> Setting up build environment"
-    cd $ROOT/LineageOS
+    cd $ROOT/RisingOS
     source build/envsetup.sh
     # mkdir -p $OUTPUTS
     echo
@@ -99,7 +99,7 @@ setupEnv() {
 build() {
     echo "--> Building DogDayAndroid"
     export RELEASE_TYPE=RELEASE
-    lunch lineage_thyme-userdebug
+    lunch rising_a12s-userdebug
     croot
     mka clobber
     mka bacon -j$(( $(nproc --all) / 2 )) 2>&1 | tee build.log
@@ -144,9 +144,7 @@ build() {
 START=$(date +%s)
 
 initRepos
-applyManifestsPatches
 syncRepos
-applyPatches
 setupEnv
 build
 
