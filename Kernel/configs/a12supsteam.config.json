@@ -2,10 +2,10 @@
   {
     "kernelSource": {
       "name": "SamsungA12sNacho",
-      "repo": "https://github.com/TDD788/Kernel.git",
-      "branch": "4.19.316",
+      "repo": "https://github.com/TDD788/a12s-kernel.git",
+      "branch": "master",
       "device": "a12s",
-      "defconfig": "darks_defconfig"
+      "defconfig": "defconfig"
     },
     "toolchains": [
       {
