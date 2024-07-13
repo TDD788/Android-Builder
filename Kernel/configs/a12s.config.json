@@ -9,19 +9,19 @@
     },
     "toolchains": [
       {
-        "repo": "https://gitlab.com/Rissu-Projekt/toolchains/clang-toolchains",
-        "branch": "clang-r383902",
+        "repo": "https://github.com/LineageOS/android_prebuilts_build-tools",
+        "branch": "lineage-21.0",
         "name": "clang",
         "binaryEnv": [
-          "bin"
+          "linux-x86/bin"
         ]
       },
       {
-        "repo": "https://gitlab.com/Rissu-Projekt/toolchains/aarch64-linux-android",
-        "branch": "google",
+        "repo": "https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-gnu-9.3",
+        "branch": "lineage-21.0",
         "name": "aarch64",
         "binaryEnv": [
-          "bin"
+          "linux-x86/bin"
         ]
       },
       {
